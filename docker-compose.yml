@@ -14,6 +14,8 @@ services:
       - "3000:3000"
     environment:
       - DATABASE_URL=postgres://root:password@postgres-db/
+      - SECRET_KEY_BASE=6a8fa4042001e88a536a75017daa97947ab5b0d2bf1b9819bdf8fae622eaaf763b45b902ed30f680c286399488264ce09c68697b4f42f051f06b61c1353dd1cb
+
     secrets:
       - source: master_key
         target: /rails/config/master.key
