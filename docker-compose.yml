@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rails-paystream-api
+    volumes:
+      - .:/rails
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: "production"
+      DATABASE_URL: "postgres://postgres:password@db:5432/rails_paystream_api_production"
+      SECRET_KEY_BASE: "${SECRET_KEY_BASE:-default_secret_key}"
+      PORT: 3000
+    depends_on:
+      - db
+    command: ["./bin/rails", "server", "-b", "0.0.0.0"]
+
+  db:
+    image: postgres:15
+    container_name: rails-paystream-db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: rails_paystream_api_production
+
+volumes:
+  postgres_data:
