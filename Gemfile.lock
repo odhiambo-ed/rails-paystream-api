@@ -91,6 +91,8 @@ GEM
     debug (1.10.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    dockerfile-rails (1.7.2)
+      rails (>= 3.0.0)
     domain_name (0.6.20240107)
     drb (2.2.1)
     erubi (1.13.1)
@@ -232,6 +234,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
+  dockerfile-rails (~> 1.6, >= 1.6.8)
   pg (~> 1.1)
   puma (>= 5.0)
   rack-cors
