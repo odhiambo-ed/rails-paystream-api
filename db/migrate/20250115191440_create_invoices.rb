@@ -1,12 +1,8 @@
 class CreateInvoices < ActiveRecord::Migration[7.1]
   def change
     create_table :invoices do |t|
-      t.string :invoice_number
-      t.text :items
-      t.decimal :total_amount
-      t.decimal :tax
-      t.string :status
-      t.datetime :due_date
+      t.string :phone_number
+      t.decimal :amount
 
       t.timestamps
     end

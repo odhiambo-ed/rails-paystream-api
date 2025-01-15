@@ -21,12 +21,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_15_193257) do
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.string "invoice_number"
-    t.text "items"
-    t.decimal "total_amount"
-    t.decimal "tax"
-    t.string "status"
-    t.datetime "due_date"
+    t.string "phone_number"
+    t.decimal "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
