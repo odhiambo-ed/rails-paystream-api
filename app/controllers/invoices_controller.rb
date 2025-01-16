@@ -52,8 +52,8 @@ class InvoicesController < ApplicationController
   
     url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
     timestamp = Time.now.strftime("%Y%m%d%H%M%S")
-    business_short_code = Rails.application.credentials.dig(:MPESA_SHORTCODE)
-    password = Base64.strict_encode64("#{business_short_code}#{Rails.application.credentials.dig(:MPESA_PASSKEY)}#{timestamp}")
+    business_short_code = ENV['MPESA_SHORTCODE']
+    password = Base64.strict_encode64("#{business_short_code}#{ENV['MPESA_PASSKEY']}#{timestamp}")
   
     payload = {
       'BusinessShortCode': business_short_code,
@@ -64,7 +64,7 @@ class InvoicesController < ApplicationController
       'PartyA': phone_number,
       'PartyB': business_short_code,
       'PhoneNumber': phone_number,
-      'CallBackURL': "#{Rails.application.credentials.dig(:CALLBACK_URL)}/mpesa_callback",
+      'CallBackURL': "#{ENV['CALLBACK_URL']}/mpesa_callback",
       'AccountReference': SecureRandom.hex(10), # Random reference if invoice_number is unavailable
       'TransactionDesc': 'Payment for invoice'
     }.to_json
@@ -92,8 +92,8 @@ class InvoicesController < ApplicationController
   
   def generate_access_token_request
     @url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
-    @consumer_key = Rails.application.credentials.dig(:MPESA_CONSUMER_KEY)
-    @consumer_secret = Rails.application.credentials.dig(:MPESA_CONSUMER_SECRET)
+    @consumer_key = ENV['MPESA_CONSUMER_KEY']
+    @consumer_secret = ENV['MPESA_CONSUMER_SECRET']
     @userpass = Base64::strict_encode64("#{@consumer_key}:#{@consumer_secret}")
     headers = {
         Authorization: "Bearer #{@userpass}"

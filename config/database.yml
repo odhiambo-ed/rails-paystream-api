@@ -64,7 +64,7 @@ test:
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
-#
+#d3fed2fc9a637718dc16a57436b451411ef9b2ab258834b02a0aa93be721331309569480bbca2bb673adf4ae57f02b8ecb4574166db0e9e29dbda4c6d0a899f2
 # Instead, provide the password or a full connection URL as an environment
 # variable when you boot the app. For example:
 #
